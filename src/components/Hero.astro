@@ -1,0 +1,168 @@
+---
+const NEXT_RACE = {
+  name: "Imola",
+  country: "Italy",
+  date: "2026-09-05T11:00:00Z",
+  label: "A2RL Round 1 — Europe debut",
+};
+
+const stats = [
+  {
+    label: "Next race",
+    value: "IMOLA",
+    sub: "05 SEP 2026",
+    accent: "coral",
+  },
+  {
+    label: "Top speed",
+    value: "295",
+    sub: "KM / H",
+    accent: "cyan",
+  },
+  {
+    label: "Podiums",
+    value: "3",
+    sub: "2025 SEASON",
+    accent: "cyan",
+  },
+  {
+    label: "World ranking",
+    value: "P4",
+    sub: "A2RL S2 FINAL",
+    accent: "coral",
+  },
+];
+---
+
+<section
+  id="hero"
+  class="relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-between"
+  data-race-date={NEXT_RACE.date}
+>
+  <!-- Background grid lines -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 opacity-[0.06] pointer-events-none"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 80px 80px;"
+  >
+  </div>
+
+  <!-- Coral corner accent -->
+  <div
+    aria-hidden="true"
+    class="absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full bg-kin-coral/15 blur-3xl pointer-events-none"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="absolute -bottom-40 -left-40 w-[520px] h-[520px] rounded-full bg-kin-cyan/10 blur-3xl pointer-events-none"
+  >
+  </div>
+
+  <div class="relative max-w-7xl w-full mx-auto px-6 lg:px-10 pt-14 lg:pt-20 pb-10 flex-1 flex flex-col">
+    <!-- Top row: tagline + countdown -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 md:mb-16">
+      <div class="flex items-center gap-3">
+        <span class="inline-block w-2 h-2 rounded-full bg-kin-coral animate-pulse"></span>
+        <span class="label">Autonomous F1 · A2RL Season 3</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <div>
+          <div class="label">Countdown to {NEXT_RACE.name}</div>
+          <div
+            id="countdown"
+            class="font-mono text-2xl md:text-3xl font-bold tabular-nums tracking-tight mt-1"
+          >
+            — : — : — : —
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1
+      class="headline text-[18vw] md:text-[12vw] lg:text-[10rem] xl:text-[11rem] leading-[0.85]"
+    >
+      <span class="block text-kin-cyan">RACING</span>
+      <span class="block">BEYOND</span>
+      <span class="block text-kin-coral">LIMITS.</span>
+    </h1>
+
+    <!-- Sub copy -->
+    <div class="mt-10 md:mt-14 grid md:grid-cols-12 gap-6 md:gap-10 items-end">
+      <p class="md:col-span-6 text-base md:text-lg text-white/80 max-w-xl leading-relaxed">
+        Kinetiz is an autonomous racing team competing in the
+        <span class="text-white font-semibold">Abu Dhabi Autonomous Racing League</span>.
+        Our AI driver makes <span class="text-kin-cyan font-semibold">1,000+ decisions per second</span>
+        behind the wheel of the K1 — pushing the edge of what a car without a human can do.
+      </p>
+      <div class="md:col-span-6 flex flex-wrap gap-3 md:justify-end">
+        <a
+          href="#car"
+          class="inline-flex items-center gap-2 bg-white text-black px-5 py-3 font-semibold tracking-tight hover:bg-kin-cyan transition-colors"
+        >
+          Meet the K1
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="#calendar"
+          class="inline-flex items-center gap-2 border border-kin-line text-white px-5 py-3 font-semibold tracking-tight hover:border-kin-coral hover:text-kin-coral transition-colors"
+        >
+          2026 calendar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="relative border-t border-kin-line">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-kin-line border-x border-kin-line">
+        {
+          stats.map((s) => (
+            <div class="px-5 py-6 lg:py-8 flex flex-col gap-2">
+              <span class="label">{s.label}</span>
+              <span
+                class={
+                  "font-black text-5xl lg:text-6xl tracking-[-0.04em] leading-none " +
+                  (s.accent === "coral" ? "text-kin-coral" : "text-kin-cyan")
+                }
+              >
+                {s.value}
+              </span>
+              <span class="label text-white/50">{s.sub}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const section = document.getElementById("hero");
+  const el = document.getElementById("countdown");
+  if (section && el) {
+    const target = new Date(section.dataset.raceDate as string).getTime();
+
+    const pad = (n: number) => String(Math.max(0, Math.floor(n))).padStart(2, "0");
+
+    const tick = () => {
+      const now = Date.now();
+      const diff = target - now;
+      if (diff <= 0) {
+        el.textContent = "LIGHTS OUT";
+        return;
+      }
+      const d = diff / (1000 * 60 * 60 * 24);
+      const h = (diff / (1000 * 60 * 60)) % 24;
+      const m = (diff / (1000 * 60)) % 60;
+      const s = (diff / 1000) % 60;
+      el.textContent = `${pad(d)}d : ${pad(h)}h : ${pad(m)}m : ${pad(s)}s`;
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

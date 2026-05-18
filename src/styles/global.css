@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kin-cyan: #7FD4D4;
+  --color-kin-coral: #E84C5C;
+  --color-kin-bg: #0a0a0a;
+  --color-kin-surface: #141414;
+  --color-kin-line: #1f1f1f;
+  --color-kin-mute: #6b6b6b;
+  --color-kin-gold: #C9A24C;
+  --color-kin-silver: #B8B8B8;
+
+  --font-sans: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+
+  --tracking-display: -0.04em;
+  --tracking-label: 0.18em;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-kin-bg);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-kin-bg);
+  }
+
+  ::selection {
+    background-color: var(--color-kin-coral);
+    color: white;
+  }
+}
+
+@utility headline {
+  font-weight: 900;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+@utility label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-kin-mute);
+}
