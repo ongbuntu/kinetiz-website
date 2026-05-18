@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kinetiz Racing//A2RL 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:a2rl-imola-2026@kinetiz.ai
+DTSTAMP:20260101T000000Z
+DTSTART:20260905T110000Z
+DTEND:20260905T150000Z
+SUMMARY:A2RL Imola — Kinetiz Racing
+LOCATION:Autodromo Enzo e Dino Ferrari, Imola, Italy
+DESCRIPTION:Kinetiz at A2RL's first European round.\nFollow @kinetiz.ai for live updates.
+URL:https://instagram.com/kinetiz.ai
+END:VEVENT
+END:VCALENDAR

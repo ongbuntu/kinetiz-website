@@ -14,7 +14,7 @@ const {
 const nav = [
   { label: "Team", href: "#hero" },
   { label: "Updates", href: "#sparkz" },
-  { label: "K1", href: "#car" },
+  { label: "The car", href: "#car" },
   { label: "Track Record", href: "#achievements" },
   { label: "Calendar", href: "#calendar" },
   { label: "Sponsors", href: "#sponsors" },
@@ -46,7 +46,14 @@ const nav = [
   <body class="bg-kin-bg text-white antialiased min-h-screen flex flex-col">
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-kin-bg/70 border-b border-kin-line">
       <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#hero" class="flex items-center gap-2 group">
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <img
+            src="/images/logo.png"
+            alt="Kinetiz"
+            width="32"
+            height="32"
+            class="w-8 h-8 object-contain"
+          />
           <span class="text-xl font-black tracking-tight">
             <span class="text-kin-cyan">KIN</span><span class="text-kin-coral">ETIZ</span>
           </span>
@@ -80,11 +87,20 @@ const nav = [
 
     <footer class="border-t border-kin-line mt-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div>
-          <div class="text-lg font-black tracking-tight">
-            <span class="text-kin-cyan">KIN</span><span class="text-kin-coral">ETIZ</span>
+        <div class="flex items-center gap-3">
+          <img
+            src="/images/logo.png"
+            alt="Kinetiz"
+            width="36"
+            height="36"
+            class="w-9 h-9 object-contain"
+          />
+          <div>
+            <div class="text-lg font-black tracking-tight">
+              <span class="text-kin-cyan">KIN</span><span class="text-kin-coral">ETIZ</span>
+            </div>
+            <p class="label mt-1">Racing beyond limits</p>
           </div>
-          <p class="label mt-2">Racing beyond limits</p>
         </div>
         <div class="flex flex-col md:flex-row gap-2 md:gap-6 text-sm text-kin-mute">
           <span>A2RL Season 2 — P4 in the world</span>

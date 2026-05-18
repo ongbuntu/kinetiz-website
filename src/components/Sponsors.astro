@@ -1,0 +1,163 @@
+---
+const title = [
+  { name: "BlueFive Capital", file: "/sponsors/bluefive.svg" },
+  { name: "Neolix", file: "/sponsors/neolix.svg" },
+];
+
+const gold = [
+  { name: "AutoGo", file: "/sponsors/autogo.svg" },
+  { name: "CargoX", file: "/sponsors/cargox.svg" },
+  { name: "Lumo", file: "/sponsors/lumo.svg" },
+  { name: "Rhynox", file: "/sponsors/rhynox.svg" },
+];
+
+const techPartners = [
+  {
+    name: "ALP",
+    file: "/sponsors/Kinetiz 2026 sponsor logos_ALP.svg",
+  },
+  {
+    name: "NTU",
+    file: "/sponsors/Kinetiz 2026 sponsor logos_NTU.svg",
+  },
+];
+---
+
+<section
+  id="sponsors"
+  class="relative bg-kin-bg border-t border-kin-line"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div>
+        <span class="label">The garage · the people backing us</span>
+        <h2
+          class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
+        >
+          Who's on<br /><span class="text-kin-cyan">the team.</span>
+        </h2>
+      </div>
+      <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
+        Kinetiz races because of the partners and sponsors who back us. The
+        garage door is open if you want in.
+      </p>
+    </div>
+
+    <!-- Title tier -->
+    <div class="mb-16">
+      <div class="flex items-baseline gap-4 mb-6">
+        <span class="font-mono text-xs font-bold tracking-[0.25em] text-kin-coral">
+          TITLE PARTNERS
+        </span>
+        <span class="h-px flex-1 bg-kin-line"></span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          title.map((s) => (
+            <a
+              href="#"
+              class="group relative bg-kin-surface border border-kin-line hover:border-kin-coral transition-colors aspect-[3/1] flex items-center justify-center p-10 lg:p-12 overflow-hidden"
+              aria-label={s.name}
+            >
+              <span
+                aria-hidden="true"
+                class="absolute top-0 left-0 right-0 h-1 bg-kin-coral opacity-70 group-hover:opacity-100 transition-opacity"
+              />
+              <img
+                src={s.file}
+                alt={s.name}
+                class="w-full h-full object-contain max-h-20 lg:max-h-24 brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Gold tier -->
+    <div class="mb-16">
+      <div class="flex items-baseline gap-4 mb-6">
+        <span class="font-mono text-xs font-bold tracking-[0.25em] text-kin-gold">
+          GOLD PARTNERS
+        </span>
+        <span class="h-px flex-1 bg-kin-line"></span>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {
+          gold.map((s) => (
+            <a
+              href="#"
+              class="group relative bg-kin-surface border border-kin-line hover:border-kin-gold transition-colors aspect-[3/1.4] flex items-center justify-center p-6 lg:p-8 overflow-hidden"
+              aria-label={s.name}
+            >
+              <span
+                aria-hidden="true"
+                class="absolute top-0 left-0 right-0 h-px bg-kin-gold opacity-60 group-hover:opacity-100 transition-opacity"
+              />
+              <img
+                src={s.file}
+                alt={s.name}
+                class="w-full h-full object-contain max-h-12 lg:max-h-14 brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Technology partners -->
+    <div class="mb-16">
+      <div class="flex items-baseline gap-4 mb-6">
+        <span class="font-mono text-xs font-bold tracking-[0.25em] text-white/70">
+          TECHNOLOGY PARTNERS
+        </span>
+        <span class="h-px flex-1 bg-kin-line"></span>
+        <span class="label text-white/40 text-[10px]">Part of the team</span>
+      </div>
+      <div class="grid grid-cols-2 gap-4 md:max-w-2xl">
+        {
+          techPartners.map((p) => (
+            <div
+              class="group relative bg-kin-surface/60 border border-dashed border-kin-line aspect-[3/1.2] flex items-center justify-center p-6 lg:p-8 overflow-hidden"
+              aria-label={p.name}
+            >
+              <img
+                src={p.file}
+                alt={p.name}
+                class="w-full h-full object-contain max-h-12 lg:max-h-14 brightness-0 invert opacity-70"
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA: become a partner -->
+    <div
+      class="relative border border-kin-line bg-kin-surface p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-kin-coral/15 blur-3xl pointer-events-none"
+      >
+      </div>
+      <div class="relative">
+        <span class="label">Sponsor inquiries</span>
+        <h3 class="headline text-3xl md:text-4xl lg:text-5xl mt-2">
+          Put your name<br />on the car.
+        </h3>
+      </div>
+      <a
+        href="mailto:partners@kinetiz.ai?subject=Sponsorship%20inquiry"
+        class="relative inline-flex items-center gap-2 bg-white text-black px-6 py-3.5 font-semibold tracking-tight hover:bg-kin-cyan transition-colors"
+      >
+        Get in touch
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

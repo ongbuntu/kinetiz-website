@@ -1,0 +1,166 @@
+---
+const milestones = [
+  {
+    rank: "1st",
+    title: "Grand Champion",
+    series: "A2RL SIM-Sprint",
+    year: "2025",
+    body: "Top of the simulator championship across the full sprint series. The driving stack proved itself before it ever hit a tarmac surface.",
+    accent: "coral",
+  },
+  {
+    rank: "P3",
+    title: "Qualifying",
+    series: "Yas Marina · North layout",
+    year: "NOV 2025",
+    body: "Locked third on the grid for the A2RL Season 2 Grand Final at the home of the series. Lap time on the absolute edge of the autonomy envelope.",
+    accent: "cyan",
+  },
+  {
+    rank: "P4",
+    title: "Grand Final",
+    series: "A2RL Season 2",
+    year: "NOV 2025",
+    body: "Top 6 in the world. Finished P4 in the season-deciding race at Yas Marina — every lap clean, every decision the car's own.",
+    accent: "coral",
+  },
+];
+
+const journey = [
+  {
+    date: "APR 2024",
+    label: "Founded · A2RL Season 1 debut",
+    note: "Kinetiz formed and debuted at Yas Marina, Abu Dhabi.",
+  },
+  {
+    date: "2025",
+    label: "SIM-Sprint Grand Champion",
+    note: "Top of the A2RL simulator championship.",
+  },
+  {
+    date: "NOV 2025",
+    label: "A2RL Season 2 — P3 qual, P4 final",
+    note: "Yas Marina, Abu Dhabi. Top 6 in the world.",
+  },
+  {
+    date: "SEP 2026",
+    label: "Imola, Italy",
+    note: "A2RL's first European round. We're on the entry list.",
+    upcoming: true,
+  },
+  {
+    date: "NOV 2026",
+    label: "Yas Marina — season finale",
+    note: "Back home in Abu Dhabi to close the season.",
+    upcoming: true,
+  },
+];
+---
+
+<section
+  id="achievements"
+  class="relative bg-kin-bg border-t border-kin-line"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div>
+        <span class="label">Track record · two seasons in</span>
+        <h2
+          class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
+        >
+          What we've<br /><span class="text-kin-coral">earned.</span>
+        </h2>
+      </div>
+      <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
+        Two seasons. One championship. A P3 grid slot and a P4 finish at the
+        Grand Final. The shortest path to top six in the world.
+      </p>
+    </div>
+
+    <!-- Milestone cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20 lg:mb-28">
+      {
+        milestones.map((m) => (
+          <article
+            class={
+              "relative border border-kin-line bg-kin-surface/60 p-7 lg:p-8 flex flex-col gap-4 group hover:border-white/30 transition-colors overflow-hidden"
+            }
+          >
+            <div
+              aria-hidden="true"
+              class={
+                "absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition-opacity " +
+                (m.accent === "coral" ? "bg-kin-coral" : "bg-kin-cyan")
+              }
+            />
+            <div class="relative flex items-start justify-between gap-4">
+              <span
+                class={
+                  "font-black text-7xl lg:text-8xl tracking-[-0.05em] leading-none " +
+                  (m.accent === "coral" ? "text-kin-coral" : "text-kin-cyan")
+                }
+              >
+                {m.rank}
+              </span>
+              <span class="label text-white/50 text-right">{m.year}</span>
+            </div>
+            <div class="relative">
+              <h3 class="text-2xl font-bold tracking-tight leading-tight">
+                {m.title}
+              </h3>
+              <p class="label mt-1.5">{m.series}</p>
+            </div>
+            <p class="relative text-sm text-white/70 leading-relaxed mt-2">
+              {m.body}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Journey timeline -->
+    <div>
+      <div class="flex items-baseline justify-between mb-8">
+        <h3 class="headline text-3xl md:text-4xl">The journey.</h3>
+        <span class="label">Apr 2024 — present</span>
+      </div>
+
+      <ol class="relative border-l border-kin-line pl-6 md:pl-8 space-y-6">
+        {
+          journey.map((step) => (
+            <li class="relative">
+              <span
+                class={
+                  "absolute -left-[33px] md:-left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-kin-bg " +
+                  (step.upcoming
+                    ? "bg-kin-coral animate-pulse"
+                    : "bg-kin-cyan")
+                }
+                aria-hidden="true"
+              />
+              <div class="flex flex-col md:flex-row md:items-baseline md:gap-5">
+                <span class="font-mono text-sm font-bold text-white/60 tracking-widest md:w-28 shrink-0">
+                  {step.date}
+                </span>
+                <div class="flex-1">
+                  <h4 class="text-lg md:text-xl font-bold tracking-tight">
+                    {step.label}
+                    {step.upcoming && (
+                      <span class="ml-2 text-[10px] font-bold tracking-[0.18em] bg-kin-coral text-white px-1.5 py-0.5 align-middle">
+                        UPCOMING
+                      </span>
+                    )}
+                  </h4>
+                  <p class="text-sm text-white/60 mt-1 leading-relaxed">
+                    {step.note}
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,156 @@
+---
+const stats = [
+  {
+    label: "Top speed",
+    value: "295",
+    unit: "KM / H",
+    accent: "cyan",
+  },
+  {
+    label: "0 — 100 km / h",
+    value: "2.6",
+    unit: "SECONDS",
+    accent: "coral",
+  },
+  {
+    label: "Sensors",
+    value: "14",
+    unit: "7 CAM · 3 LIDAR · 4 RADAR",
+    accent: "cyan",
+  },
+  {
+    label: "AI decisions",
+    value: "1,000",
+    unit: "PER SECOND +",
+    accent: "coral",
+  },
+];
+
+const callouts = [
+  {
+    n: "01",
+    title: "Sensor stack",
+    body: "7 cameras, 3 LiDAR, 4 radar — full 360° perception feeding the loop at race pace.",
+  },
+  {
+    n: "02",
+    title: "Autonomy compute",
+    body: "Onboard cluster runs the full driving stack at 1,000+ Hz, no link to the pit.",
+  },
+  {
+    n: "03",
+    title: "Dallara EAV-25",
+    body: "Super Formula chassis adapted for autonomous racing — A2RL spec, 2026 build.",
+  },
+  {
+    n: "04",
+    title: "Race tyres",
+    body: "Slicks tuned for hot-lap pace at Imola and Yas Marina. No driver, full grip.",
+  },
+];
+---
+
+<section
+  id="car"
+  class="relative bg-kin-bg border-t border-kin-line overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div>
+        <span class="label">The car · 2026 spec</span>
+        <h2
+          class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
+        >
+          The<br /><span class="text-kin-coral">Kinetiz car.</span>
+        </h2>
+      </div>
+      <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
+        Dallara EAV-25 Super Formula chassis. Autonomous from the ground up.
+        Built to race the limit — no driver, no hesitation.
+      </p>
+    </div>
+
+    <!-- Car + callouts -->
+    <div class="relative">
+      <!-- Glow under car -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-x-0 top-1/3 h-1/2 bg-kin-cyan/10 blur-3xl pointer-events-none"
+      >
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center relative">
+        <!-- Left callouts -->
+        <div class="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4 order-2 lg:order-1">
+          {
+            callouts.slice(0, 2).map((c) => (
+              <div class="border border-kin-line p-4 bg-kin-surface/50 backdrop-blur">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-mono text-xs text-kin-cyan font-bold tracking-widest">
+                    {c.n}
+                  </span>
+                  <span class="text-sm font-bold tracking-tight">
+                    {c.title}
+                  </span>
+                </div>
+                <p class="text-xs text-white/60 leading-relaxed">{c.body}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Car image -->
+        <div class="lg:col-span-6 relative order-1 lg:order-2">
+          <img
+            src="/images/Kinetiz_3_4%202.png"
+            alt="Kinetiz race car in 2026 livery, 3/4 view"
+            class="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(127,212,212,0.15)]"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Right callouts -->
+        <div class="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4 order-3">
+          {
+            callouts.slice(2, 4).map((c) => (
+              <div class="border border-kin-line p-4 bg-kin-surface/50 backdrop-blur">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-mono text-xs text-kin-coral font-bold tracking-widest">
+                    {c.n}
+                  </span>
+                  <span class="text-sm font-bold tracking-tight">
+                    {c.title}
+                  </span>
+                </div>
+                <p class="text-xs text-white/60 leading-relaxed">{c.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="mt-16 lg:mt-20">
+      <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-kin-line border border-kin-line">
+        {
+          stats.map((s) => (
+            <div class="px-5 py-7 lg:py-9 flex flex-col gap-2">
+              <span class="label">{s.label}</span>
+              <span
+                class={
+                  "font-black text-5xl lg:text-7xl tracking-[-0.04em] leading-none " +
+                  (s.accent === "coral" ? "text-kin-coral" : "text-kin-cyan")
+                }
+              >
+                {s.value}
+              </span>
+              <span class="label text-white/50">{s.unit}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

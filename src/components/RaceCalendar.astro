@@ -1,0 +1,192 @@
+---
+const races = [
+  {
+    id: "imola",
+    tag: "Next round",
+    accent: "coral",
+    primary: true,
+    date: "2026-09-05T11:00:00Z",
+    dateLabel: "05 SEP 2026",
+    track: "Imola",
+    country: "Italy",
+    circuit: "Autodromo Enzo e Dino Ferrari",
+    length: "4.909 km",
+    corners: "19 corners",
+    note: "A2RL's first ever European round. Kinetiz on the entry list.",
+    ics: "/ics/imola-2026.ics",
+  },
+  {
+    id: "yas",
+    tag: "Season finale",
+    accent: "cyan",
+    primary: false,
+    date: "2026-11-14T14:00:00Z",
+    dateLabel: "NOV 2026",
+    track: "Yas Marina",
+    country: "Abu Dhabi",
+    circuit: "Yas Marina Circuit",
+    length: "5.281 km",
+    corners: "16 corners",
+    note: "Home track. Where we made our debut and where we close the season.",
+    ics: "/ics/yas-marina-2026.ics",
+  },
+];
+---
+
+<section
+  id="calendar"
+  class="relative bg-kin-bg border-t border-kin-line overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div>
+        <span class="label">2026 race calendar</span>
+        <h2
+          class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
+        >
+          Where we<br /><span class="text-kin-cyan">race next.</span>
+        </h2>
+      </div>
+      <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
+        Two rounds in 2026 — a European debut at Imola, then home to Abu Dhabi
+        for the finale at Yas Marina.
+      </p>
+    </div>
+
+    <!-- Race cards -->
+    <div class="grid lg:grid-cols-12 gap-5">
+      {
+        races.map((r) => (
+          <article
+            class={
+              "relative overflow-hidden border border-kin-line bg-kin-surface group hover:border-white/30 transition-colors " +
+              (r.primary
+                ? "lg:col-span-7 min-h-[420px] lg:min-h-[520px]"
+                : "lg:col-span-5 min-h-[420px] lg:min-h-[520px]")
+            }
+            data-race-date={r.date}
+          >
+            {/* Glow */}
+            <div
+              aria-hidden="true"
+              class={
+                "absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition-opacity " +
+                (r.accent === "coral" ? "bg-kin-coral" : "bg-kin-cyan")
+              }
+            />
+            {/* Grid texture */}
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 opacity-[0.05] pointer-events-none"
+              style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 60px 60px;"
+            />
+
+            <div class="relative h-full p-7 lg:p-10 flex flex-col">
+              {/* Top: tag + date */}
+              <div class="flex items-start justify-between gap-4 mb-8">
+                <span
+                  class={
+                    "inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold tracking-[0.18em] " +
+                    (r.accent === "coral"
+                      ? "bg-kin-coral text-white"
+                      : "bg-kin-cyan text-black")
+                  }
+                >
+                  {r.tag.toUpperCase()}
+                </span>
+                <span class="label text-white/60 font-mono">
+                  {r.dateLabel}
+                </span>
+              </div>
+
+              {/* Track + country */}
+              <div class="mb-auto">
+                <h3
+                  class={
+                    "headline leading-[0.85] " +
+                    (r.primary
+                      ? "text-6xl md:text-7xl lg:text-8xl"
+                      : "text-5xl md:text-6xl lg:text-7xl")
+                  }
+                >
+                  {r.track}
+                </h3>
+                <p class="label mt-3 text-white/70 text-sm">{r.country}</p>
+              </div>
+
+              {/* Countdown */}
+              {r.primary && (
+                <div class="my-8 lg:my-10">
+                  <span class="label">Lights out in</span>
+                  <div
+                    class="race-countdown font-mono text-2xl md:text-4xl font-bold tabular-nums tracking-tight mt-2"
+                  >
+                    — : — : — : —
+                  </div>
+                </div>
+              )}
+
+              {/* Bottom: circuit details + CTA */}
+              <div class="pt-6 mt-auto border-t border-kin-line">
+                <div class="flex flex-col gap-1.5 mb-5">
+                  <span class="text-sm font-semibold tracking-tight">
+                    {r.circuit}
+                  </span>
+                  <div class="flex items-center gap-4 text-xs text-white/50 font-mono">
+                    <span>{r.length}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{r.corners}</span>
+                  </div>
+                </div>
+                <p class="text-sm text-white/70 leading-relaxed mb-5">
+                  {r.note}
+                </p>
+                <a
+                  href={r.ics}
+                  download
+                  class={
+                    "inline-flex items-center gap-2 px-4 py-2.5 font-semibold tracking-tight text-sm transition-colors " +
+                    (r.accent === "coral"
+                      ? "bg-kin-coral text-white hover:bg-kin-coral/85"
+                      : "bg-kin-cyan text-black hover:bg-kin-cyan/85")
+                  }
+                >
+                  Add to calendar
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const pad = (n: number) =>
+    String(Math.max(0, Math.floor(n))).padStart(2, "0");
+
+  document.querySelectorAll<HTMLElement>("[data-race-date]").forEach((card) => {
+    const el = card.querySelector<HTMLElement>(".race-countdown");
+    if (!el) return;
+    const target = new Date(card.dataset.raceDate as string).getTime();
+
+    const tick = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        el.textContent = "LIGHTS OUT";
+        return;
+      }
+      const d = diff / (1000 * 60 * 60 * 24);
+      const h = (diff / (1000 * 60 * 60)) % 24;
+      const m = (diff / (1000 * 60)) % 60;
+      const s = (diff / 1000) % 60;
+      el.textContent = `${pad(d)}d : ${pad(h)}h : ${pad(m)}m : ${pad(s)}s`;
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  });
+</script>

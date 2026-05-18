@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kinetiz Racing//A2RL 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:a2rl-yas-marina-2026@kinetiz.ai
+DTSTAMP:20260101T000000Z
+DTSTART:20261114T140000Z
+DTEND:20261114T180000Z
+SUMMARY:A2RL Yas Marina — Season Finale (Kinetiz Racing)
+LOCATION:Yas Marina Circuit, Abu Dhabi, UAE
+DESCRIPTION:A2RL Season 3 Grand Final at Kinetiz's home circuit.\nFollow @kinetiz.ai for live updates.
+URL:https://instagram.com/kinetiz.ai
+END:VEVENT
+END:VCALENDAR

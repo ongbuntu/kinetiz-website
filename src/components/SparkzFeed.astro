@@ -1,0 +1,127 @@
+---
+const updates = [
+  {
+    tag: "RACE RESULT",
+    accent: "coral",
+    date: "20 NOV 2025",
+    title: "Top 6 in the world.",
+    body: "Locked P3 in qualifying on the Yas Marina north layout, then finished P4 in the A2RL Season 2 Grand Final. The car ran clean for every lap and the stack held under load. We're going to Imola.",
+    image: "/images/Kinetiz_2025_top_view.png",
+    imageAlt: "Kinetiz car top-down view in 2025 livery",
+  },
+  {
+    tag: "TECH UPDATE",
+    accent: "cyan",
+    date: "10 MAR 2026",
+    title: "New livery, 2026 spec.",
+    body: "Same chassis bones — Dallara EAV-25 Super Formula — wearing new colors for the season. Cyan over coral, every panel earning its place. We took her out for shakedown runs at full pace.",
+    image: "/images/kinetiz_livery_2026.png",
+    imageAlt: "Kinetiz car in 2026 cyan and coral livery",
+  },
+  {
+    tag: "ENGINEERING",
+    accent: "cyan",
+    date: "02 APR 2026",
+    title: "1,000 decisions a second.",
+    body: "Inside the helmet there's no human — there's a stack. Perception, planning, control loops, all firing faster than you can blink. Watch us push the upper limit of what autonomy can do at 295 km/h.",
+    image: "/images/sparkz_helmet.png",
+    imageAlt: "Sparkz helmet close-up",
+  },
+  {
+    tag: "BEHIND THE SCENES",
+    accent: "coral",
+    date: "01 MAY 2026",
+    title: "Italy, here we come.",
+    body: "Imola is A2RL's first European race and Kinetiz is on the entry list. Crates packing, sims warming up, route mapped from Abu Dhabi to the hills above the Santerno. September can't come fast enough.",
+    image: "/images/kinetiz_livery_2026_2.png",
+    imageAlt: "Kinetiz car in 2026 livery, alternate angle",
+  },
+];
+---
+
+<section id="sparkz" class="relative bg-kin-bg border-t border-kin-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+      <div class="flex items-center gap-5 md:gap-7">
+        <div class="relative shrink-0">
+          <img
+            src="/images/sparkz_front.png"
+            alt="Sparkz, the Kinetiz AI mascot"
+            width="120"
+            height="120"
+            class="w-24 h-24 md:w-32 md:h-32 object-contain"
+          />
+          <span
+            class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-kin-cyan border-2 border-kin-bg animate-pulse"
+            aria-hidden="true"></span>
+        </div>
+        <div>
+          <span class="label">From the garage · narrated by Sparkz</span>
+          <h2
+            class="headline text-5xl md:text-6xl lg:text-7xl mt-3 leading-[0.9]"
+          >
+            Live<br /><span class="text-kin-cyan">from the pit wall.</span>
+          </h2>
+        </div>
+      </div>
+      <a
+        href="https://instagram.com/kinetiz.ai"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="label border border-kin-line px-4 py-2 rounded-full hover:border-kin-coral hover:text-kin-coral transition-colors self-start md:self-end"
+      >
+        Follow @kinetiz.ai →
+      </a>
+    </div>
+
+    <!-- Card grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {
+        updates.map((u) => (
+          <article class="group relative bg-kin-surface border border-kin-line hover:border-white/30 transition-colors flex flex-col overflow-hidden">
+            <div class="relative aspect-[4/3] bg-black overflow-hidden">
+              <img
+                src={u.image}
+                alt={u.imageAlt}
+                loading="lazy"
+                class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              />
+              <span
+                class={
+                  "absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold tracking-[0.18em] " +
+                  (u.accent === "coral"
+                    ? "bg-kin-coral text-white"
+                    : "bg-kin-cyan text-black")
+                }
+              >
+                {u.tag}
+              </span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col gap-3">
+              <span class="label text-white/50 font-mono tracking-[0.12em]">
+                {u.date}
+              </span>
+              <h3 class="text-xl font-bold tracking-tight leading-snug">
+                {u.title}
+              </h3>
+              <p class="text-sm text-white/70 leading-relaxed flex-1">
+                {u.body}
+              </p>
+              <div class="pt-3 mt-2 border-t border-kin-line flex items-center gap-2.5">
+                <img
+                  src="/images/sparkz_front.png"
+                  alt=""
+                  width="24"
+                  height="24"
+                  class="w-6 h-6 object-contain rounded-full bg-kin-bg p-0.5"
+                />
+                <span class="label">Sparkz</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
