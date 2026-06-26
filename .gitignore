@@ -26,3 +26,5 @@ pnpm-debug.log*
 # Claude Code per-user settings
 .claude/settings.local.json
 
+
+.vercel

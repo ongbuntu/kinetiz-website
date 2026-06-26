@@ -59,17 +59,22 @@ const journey = [
 
 <section
   id="achievements"
-  class="relative bg-kin-bg border-t border-kin-line"
+  class="relative bg-kin-bg border-t border-kin-line overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 telemetry-grid opacity-25 pointer-events-none"
+  >
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
     <!-- Section header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
       <div>
-        <span class="label">Track record · two seasons in</span>
+        <span class="label">// Track record · two seasons in</span>
         <h2
           class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
         >
-          What we've<br /><span class="text-kin-coral">earned.</span>
+          What we've<br /><span class="text-kin-coral text-glow-coral">earned.</span>
         </h2>
       </div>
       <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
@@ -81,11 +86,12 @@ const journey = [
     <!-- Milestone cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20 lg:mb-28">
       {
-        milestones.map((m) => (
+        milestones.map((m, i) => (
           <article
             class={
-              "relative border border-kin-line bg-kin-surface/60 p-7 lg:p-8 flex flex-col gap-4 group hover:border-white/30 transition-colors overflow-hidden"
+              "hud-frame relative border border-kin-line bg-kin-surface/60 p-7 lg:p-8 flex flex-col gap-4 group hover:border-white/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden reveal"
             }
+            style={`--reveal-delay: ${i * 90}ms`}
           >
             <div
               aria-hidden="true"
@@ -97,7 +103,7 @@ const journey = [
             <div class="relative flex items-start justify-between gap-4">
               <span
                 class={
-                  "font-black text-7xl lg:text-8xl tracking-[-0.05em] leading-none " +
+                  "readout font-black text-7xl lg:text-8xl tracking-[-0.05em] leading-none " +
                   (m.accent === "coral" ? "text-kin-coral" : "text-kin-cyan")
                 }
               >
@@ -120,7 +126,7 @@ const journey = [
     </div>
 
     <!-- Journey timeline -->
-    <div>
+    <div class="reveal">
       <div class="flex items-baseline justify-between mb-8">
         <h3 class="headline text-3xl md:text-4xl">The journey.</h3>
         <span class="label">Apr 2024 — present</span>
@@ -128,8 +134,8 @@ const journey = [
 
       <ol class="relative border-l border-kin-line pl-6 md:pl-8 space-y-6">
         {
-          journey.map((step) => (
-            <li class="relative">
+          journey.map((step, i) => (
+            <li class="relative reveal" style={`--reveal-delay: ${i * 70}ms`}>
               <span
                 class={
                   "absolute -left-[33px] md:-left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-kin-bg " +

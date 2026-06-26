@@ -25,17 +25,22 @@ const techPartners = [
 
 <section
   id="sponsors"
-  class="relative bg-kin-bg border-t border-kin-line"
+  class="relative bg-kin-bg border-t border-kin-line overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 telemetry-grid opacity-25 pointer-events-none"
+  >
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
     <!-- Section header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 reveal">
       <div>
-        <span class="label">The garage · the people backing us</span>
+        <span class="label">// The garage · the people backing us</span>
         <h2
           class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
         >
-          Who's on<br /><span class="text-kin-cyan">the team.</span>
+          Who's on<br /><span class="text-kin-cyan text-glow-cyan">the team.</span>
         </h2>
       </div>
       <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
@@ -45,7 +50,7 @@ const techPartners = [
     </div>
 
     <!-- Title tier -->
-    <div class="mb-16">
+    <div class="mb-16 reveal">
       <div class="flex items-baseline gap-4 mb-6">
         <span class="font-mono text-xs font-bold tracking-[0.25em] text-kin-coral">
           TITLE PARTNERS
@@ -77,7 +82,7 @@ const techPartners = [
     </div>
 
     <!-- Gold tier -->
-    <div class="mb-16">
+    <div class="mb-16 reveal">
       <div class="flex items-baseline gap-4 mb-6">
         <span class="font-mono text-xs font-bold tracking-[0.25em] text-kin-gold">
           GOLD PARTNERS
@@ -109,7 +114,7 @@ const techPartners = [
     </div>
 
     <!-- Technology partners -->
-    <div class="mb-16">
+    <div class="mb-16 reveal">
       <div class="flex items-baseline gap-4 mb-6">
         <span class="font-mono text-xs font-bold tracking-[0.25em] text-white/70">
           TECHNOLOGY PARTNERS
@@ -138,8 +143,11 @@ const techPartners = [
 
     <!-- CTA: become a partner -->
     <div
-      class="relative border border-kin-line bg-kin-surface p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden"
+      class="reveal hud-frame relative border border-kin-line bg-kin-surface p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden"
     >
+      <span
+        aria-hidden="true"
+        class="absolute top-0 left-0 right-0 h-px accent-line"></span>
       <div
         aria-hidden="true"
         class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-kin-coral/15 blur-3xl pointer-events-none"

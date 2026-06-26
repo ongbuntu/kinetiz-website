@@ -39,10 +39,15 @@ const updates = [
 ];
 ---
 
-<section id="sparkz" class="relative bg-kin-bg border-t border-kin-line">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+<section id="sparkz" class="relative bg-kin-bg border-t border-kin-line overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 telemetry-grid opacity-25 pointer-events-none"
+  >
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
     <!-- Section header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14 reveal">
       <div class="flex items-center gap-5 md:gap-7">
         <div class="relative shrink-0">
           <img
@@ -57,11 +62,11 @@ const updates = [
             aria-hidden="true"></span>
         </div>
         <div>
-          <span class="label">From the garage · narrated by Sparkz</span>
+          <span class="label">// From the garage · narrated by Sparkz</span>
           <h2
             class="headline text-5xl md:text-6xl lg:text-7xl mt-3 leading-[0.9]"
           >
-            Live<br /><span class="text-kin-cyan">from the pit wall.</span>
+            Live<br /><span class="text-kin-cyan text-glow-cyan">from the pit wall.</span>
           </h2>
         </div>
       </div>
@@ -78,8 +83,15 @@ const updates = [
     <!-- Card grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
       {
-        updates.map((u) => (
-          <article class="group relative bg-kin-surface border border-kin-line hover:border-white/30 transition-colors flex flex-col overflow-hidden">
+        updates.map((u, i) => (
+          <article
+            class="group relative bg-kin-surface border border-kin-line hover:border-white/30 transition-colors flex flex-col overflow-hidden reveal hover:-translate-y-1 duration-300"
+            style={`--reveal-delay: ${i * 90}ms`}
+          >
+            <span
+              aria-hidden="true"
+              class="absolute top-0 left-0 right-0 h-px accent-line opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            />
             <div class="relative aspect-[4/3] bg-black overflow-hidden">
               <img
                 src={u.image}

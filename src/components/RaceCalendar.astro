@@ -39,13 +39,13 @@ const races = [
 >
   <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
     <!-- Section header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
       <div>
-        <span class="label">2026 race calendar</span>
+        <span class="label">// 2026 race calendar</span>
         <h2
           class="headline text-5xl md:text-7xl lg:text-8xl mt-3 leading-[0.9]"
         >
-          Where we<br /><span class="text-kin-cyan">race next.</span>
+          Where we<br /><span class="text-kin-cyan text-glow-cyan">race next.</span>
         </h2>
       </div>
       <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed">
@@ -57,14 +57,15 @@ const races = [
     <!-- Race cards -->
     <div class="grid lg:grid-cols-12 gap-5">
       {
-        races.map((r) => (
+        races.map((r, i) => (
           <article
             class={
-              "relative overflow-hidden border border-kin-line bg-kin-surface group hover:border-white/30 transition-colors " +
+              "reveal hud-frame relative overflow-hidden border border-kin-line bg-kin-surface group hover:border-white/30 transition-colors " +
               (r.primary
                 ? "lg:col-span-7 min-h-[420px] lg:min-h-[520px]"
                 : "lg:col-span-5 min-h-[420px] lg:min-h-[520px]")
             }
+            style={`--reveal-delay: ${i * 120}ms`}
             data-race-date={r.date}
           >
             {/* Glow */}
@@ -120,7 +121,7 @@ const races = [
                 <div class="my-8 lg:my-10">
                   <span class="label">Lights out in</span>
                   <div
-                    class="race-countdown font-mono text-2xl md:text-4xl font-bold tabular-nums tracking-tight mt-2"
+                    class="race-countdown readout text-2xl md:text-4xl font-bold tracking-tight mt-2 text-kin-coral text-glow-coral"
                   >
                     — : — : — : —
                   </div>

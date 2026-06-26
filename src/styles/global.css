@@ -1,20 +1,34 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand accents */
   --color-kin-cyan: #7FD4D4;
+  --color-kin-cyan-bright: #A6F0F0;
   --color-kin-coral: #E84C5C;
-  --color-kin-bg: #0a0a0a;
-  --color-kin-surface: #141414;
-  --color-kin-line: #1f1f1f;
-  --color-kin-mute: #6b6b6b;
+  --color-kin-coral-bright: #FF6B7A;
+
+  /* Surfaces — layered dark for depth */
+  --color-kin-bg: #060708;
+  --color-kin-surface: #101214;
+  --color-kin-surface-2: #16191c;
+  --color-kin-line: #21262b;
+  --color-kin-line-bright: #313840;
+  --color-kin-mute: #6b7178;
+
+  /* Tiers */
   --color-kin-gold: #C9A24C;
   --color-kin-silver: #B8B8B8;
 
   --font-sans: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
   --font-display: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
 
   --tracking-display: -0.04em;
   --tracking-label: 0.18em;
+
+  /* Glow shadows */
+  --shadow-glow-cyan: 0 0 40px -8px rgba(127, 212, 212, 0.45);
+  --shadow-glow-coral: 0 0 40px -8px rgba(232, 76, 92, 0.45);
 }
 
 @layer base {
@@ -22,18 +36,47 @@
     background-color: var(--color-kin-bg);
     color: white;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    /* Keep section headings clear of the fixed 64px header on anchor jumps */
+    scroll-padding-top: 5rem;
   }
 
   body {
     font-family: var(--font-sans);
     background-color: var(--color-kin-bg);
+    overflow-x: hidden;
   }
 
   ::selection {
     background-color: var(--color-kin-coral);
     color: white;
   }
+
+  /* Visible, on-brand focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-kin-cyan);
+    outline-offset: 3px;
+  }
+
+  /* Custom scrollbar — subtle, technical */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-kin-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-kin-line-bright);
+    border: 2px solid var(--color-kin-bg);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-kin-cyan);
+  }
 }
+
+/* ───────────────────────── Typography utilities ───────────────────────── */
 
 @utility headline {
   font-weight: 900;
@@ -48,4 +91,218 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-kin-mute);
+}
+
+/* Monospace telemetry readout */
+@utility readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* ───────────────────────── HUD / FUI elements ───────────────────────── */
+
+/* Corner-bracket frame, like a targeting reticle around a panel */
+.hud-frame {
+  position: relative;
+}
+.hud-frame::before,
+.hud-frame::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-kin-cyan);
+  border-style: solid;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+.hud-frame::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.hud-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+.hud-frame:hover::before,
+.hud-frame:hover::after {
+  opacity: 1;
+  width: 20px;
+  height: 20px;
+}
+
+/* Fine technical grid texture */
+.telemetry-grid {
+  background-image:
+    linear-gradient(to right, rgba(127, 212, 212, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(127, 212, 212, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Perspective grid "floor" that recedes to the horizon */
+.perspective-grid {
+  background-image:
+    linear-gradient(to right, rgba(127, 212, 212, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(127, 212, 212, 0.18) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(420px) rotateX(68deg) scale(2);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to top, black, transparent 78%);
+  -webkit-mask-image: linear-gradient(to top, black, transparent 78%);
+  animation: grid-pan 6s linear infinite;
+}
+
+/* Horizontal sweeping scan line inside a panel */
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(127, 212, 212, 0.12) 50%,
+    transparent 100%
+  );
+  height: 35%;
+  animation: scan 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Glow halos */
+.glow-cyan {
+  box-shadow: var(--shadow-glow-cyan);
+}
+.glow-coral {
+  box-shadow: var(--shadow-glow-coral);
+}
+.text-glow-cyan {
+  text-shadow: 0 0 24px rgba(127, 212, 212, 0.55);
+}
+.text-glow-coral {
+  text-shadow: 0 0 24px rgba(232, 76, 92, 0.55);
+}
+
+/* Blinking live marker dot */
+.live-dot {
+  position: relative;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Animated gradient hairline (top accent on panels) */
+.accent-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-kin-cyan),
+    var(--color-kin-coral),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: line-sweep 4s linear infinite;
+}
+
+/* Marquee ticker track */
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker 38s linear infinite;
+}
+.ticker-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+/* ───────────────────────── Scroll reveal ───────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ───────────────────────── Keyframes ───────────────────────── */
+
+@keyframes scan {
+  0% { transform: translateY(-120%); }
+  50% { transform: translateY(320%); }
+  100% { transform: translateY(-120%); }
+}
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 48px; }
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes line-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* ───────────────────────── Reduced motion ───────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .perspective-grid {
+    animation: none;
+  }
 }
